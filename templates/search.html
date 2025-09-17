@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Search Alumni</h2>
+<ul>
+{% for alum in alumni %}
+    <li>{{ alum.name }} ({{ alum.email }})</li>
+{% endfor %}
+</ul>
+{% endblock %}

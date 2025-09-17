@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="student-home-card">
+    <h2>Welcome, Student!</h2>
+    <div class="student-links">
+        <a href="/students/profile" class="btn btn-student">My Profile</a>
+        <a href="/students/events" class="btn btn-student">Events</a>
+        <a href="/students/connections" class="btn btn-student">Connections</a>
+    </div>
+    <div class="student-info">
+        <p>Connect with alumni, discover events, and manage your student profile.</p>
+    </div>
+
+    <div class="notice-section mt-4">
+        <h4 class="mb-3">Notices</h4>
+        {% if notices and notices|length > 0 %}
+            <ul class="list-group">
+            {% for notice in notices %}
+                <li class="list-group-item">
+                    <strong>{{ notice.title }}</strong><br>
+                    <span class="text-muted" style="font-size:0.95em;">{{ notice.created_at.strftime('%Y-%m-%d') }}</span>
+                    <div>{{ notice.content }}</div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <div class="text-muted">No notices at this time.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

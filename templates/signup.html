@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="signup-card">
+    <h2>Signup</h2>
+    <form method="POST" class="signup-form">
+        <input type="text" name="name" placeholder="Name" class="form-control" required>
+        <input type="email" name="email" placeholder="Email" class="form-control" required>
+        <input type="password" name="password" placeholder="Password" class="form-control" required>
+        <select name="role" class="form-control" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="alumni">Alumni</option>
+            <option value="student">Student</option>
+            <option value="admin">Admin</option>
+        </select>
+        <button type="submit" class="btn btn-signup">Signup</button>
+    </form>
+    <div class="signup-links">
+        <a href="/login">Already have an account? Login</a>
+    </div>
+</div>
+{% endblock %}

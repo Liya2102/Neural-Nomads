@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alumni-home-card">
+    <h2>Welcome, Alumni!</h2>
+    <div class="alumni-links">
+        <a href="/alumni/profile" class="btn btn-alumni">My Profile</a>
+        <a href="/alumni/events" class="btn btn-alumni">Events</a>
+        <a href="/alumni/connections" class="btn btn-alumni">Connections</a>
+    </div>
+    <div class="alumni-info">
+        <p>Stay connected with your peers, discover upcoming events, and manage your profile all in one place.</p>
+    </div>
+
+    <div class="notice-section mt-4">
+        <h4 class="mb-3">Notices</h4>
+        {% if notices and notices|length > 0 %}
+            <ul class="list-group">
+            {% for notice in notices %}
+                <li class="list-group-item">
+                    <strong>{{ notice.title }}</strong><br>
+                    <span class="text-muted" style="font-size:0.95em;">{{ notice.created_at.strftime('%Y-%m-%d') }}</span>
+                    <div>{{ notice.content }}</div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <div class="text-muted">No notices at this time.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
