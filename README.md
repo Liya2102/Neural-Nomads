@@ -1,3 +1,4 @@
+[VIT-Chennai-Alumni-Association-compressed.pptx](https://github.com/user-attachments/files/22388179/VIT-Chennai-Alumni-Association-compressed.pptx)
 # 🎓 VIT Chennai Alumni Association Platform  
 
 A *Flask-based web platform* to connect *Students, Alumni, and Admins* through a centralized database, event management, and smart tools.  
