@@ -27,7 +27,7 @@ A *Flask-based web platform* to connect *Students, Alumni, and Admins* through a
 
 ---
 
-## 💡 Smart Enhancements (Future Scope)
+## 💡 Smart Enhancements
 - 🤝 *Mentor–Mentee Matching Algorithm* (interests, location, industry)  
 - 🤖 *AI Chatbot* for alumni/student queries ("Show me alumni in Google")  
 - 🌍 *Geo-Mapping of Alumni* across the globe  
