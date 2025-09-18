@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
-from models import db, User
+from models import db, User, AlumniProfile
+from models import StudentProfile
 
 auth = Blueprint("auth", __name__)
 
@@ -15,15 +16,69 @@ def signup():
 
         if User.query.filter_by(email=email).first():
             flash("Email already exists.")
-            return redirect(url_for("auth.signup"))
+            return render_template("signup.html")
 
         user = User(name=name, email=email, password=password, role=role)
         db.session.add(user)
         db.session.commit()
-        flash("Signup successful! Please login.")
-        return redirect(url_for("auth.login"))
 
+        if role == "alumni":
+            return redirect(url_for("auth.complete_alumni_profile", user_id=user.id))
+        elif role == "student":
+            return redirect(url_for("auth.complete_student_profile", user_id=user.id))
+        else:
+            flash("Signup successful! Please login.")
+            return redirect(url_for("auth.login"))
     return render_template("signup.html")
+
+@auth.route("/complete-student-profile/<int:user_id>", methods=["GET", "POST"])
+def complete_student_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    if request.method == "POST":
+        profile = StudentProfile(
+            user_id=user.id,
+            name=user.name,
+            email=user.email,
+            batch=request.form.get("batch"),
+            department=request.form.get("department"),
+            phone=request.form.get("phone"),
+            linkedin=request.form.get("linkedin"),
+            skills=request.form.get("skills"),
+            bio=request.form.get("bio")
+        )
+        db.session.add(profile)
+        db.session.commit()
+        flash("Profile completed! Please login.")
+        return redirect(url_for("auth.login"))
+    return render_template("student_profile_form.html")
+   
+
+
+@auth.route("/complete-alumni-profile/<int:user_id>", methods=["GET", "POST"])
+def complete_alumni_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    if request.method == "POST":
+        profile = AlumniProfile(
+            user_id=user.id,
+            name=user.name,
+            email=user.email,
+            graduation_year=request.form.get("graduation_year"),
+            batch=request.form.get("batch"),
+            degree=request.form.get("degree"),
+            department=request.form.get("department"),
+            phone=request.form.get("phone"),
+            linkedin=request.form.get("linkedin"),
+            company=request.form.get("company"),
+            occupation=request.form.get("occupation"),
+            location=request.form.get("location"),
+            skills=request.form.get("skills"),
+            bio=request.form.get("bio")
+        )
+        db.session.add(profile)
+        db.session.commit()
+        flash("Profile completed! Please login.")
+        return redirect(url_for("auth.login"))
+    return render_template("alumni_profile_form.html")
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():

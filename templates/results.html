@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="student-home-card">
+    <h2>Mentor Matches for {{ mentee.name }}</h2>
+    {% if matches and matches|length > 0 %}
+        <ul class="list-group mb-4">
+        {% for mentor in matches %}
+            <li class="list-group-item">
+                <strong>{{ mentor.user.name if mentor.user else '' }}</strong><br>
+                <span class="text-muted" style="font-size:0.95em;">{{ mentor.location }}</span><br>
+                <span>Name: {{ mentor.name }}</span><br>
+                <span>Batch: {{ mentor.batch }}</span><br>
+                <span>Department: {{ mentor.department }}</span><br>
+                <span>Company: {{ mentor.company }}</span><br>
+                <span>Role: {{ mentor.occupation }}</span><br>
+                <span>Skills: {{ mentor.skills }}</span><br>
+                <span>LinkedIn: <a href="{{ mentor.linkedin }}" target="_blank">{{ mentor.linkedin_url }}</a></span><br>
+                <a href="mailto:{{ mentor.email }}" class="btn btn-student mt-2">Contact Mentor</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="text-muted">No suitable mentors found. Try adjusting your interests or career goal.</div>
+    {% endif %}
+    <a href="/students/mentor-matching" class="btn btn-student">Back to Mentor Matching</a>
+</div>
+{% endblock %}

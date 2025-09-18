@@ -1,11 +1,62 @@
+.student-profile-card {
+    max-width: 500px;
+    margin: 60px auto 0 auto;
+    background: linear-gradient(120deg, #e0c3fc 0%, #bfc9d9 100%);
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(95,44,130,0.10);
+    padding: 40px 36px 32px 36px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.8s;
+}
+.profile-details {
+    margin-top: 24px;
+    font-size: 1.08rem;
+    color: #3a506b;
+}
+.profile-details p {
+    margin-bottom: 10px;
+}
+.alumni-profile-card {
+    max-width: 500px;
+    margin: 60px auto 0 auto;
+    background: linear-gradient(120deg, #e0c3fc 0%, #bfc9d9 100%);
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(95,44,130,0.10);
+    padding: 40px 36px 32px 36px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.8s;
+}
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.alumni-profile-card h2 {
+    margin-bottom: 24px;
+    color: #3a506b;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.profile-form .form-control {
+    font-size: 1.08rem;
+    border-radius: 7px;
+    border: 1px solid #bfc9d9;
+    margin-bottom: 0;
+}
+.profile-form .form-control:focus {
+    border-color: #7b9acc;
+}
 .admin-event-card {
     max-width: 500px;
     margin: 60px auto 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(58,80,107,0.10);
-    padding: 36px 32px 28px 32px;
+    background: linear-gradient(120deg, #e0c3fc 0%, #bfc9d9 100%);
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(95,44,130,0.10);
+    padding: 40px 36px 32px 36px;
     text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.8s;
 }
 .admin-event-card h2 {
     margin-bottom: 24px;
@@ -42,15 +93,16 @@
     margin: 0 auto;
 }
 .event-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 12px rgba(58,80,107,0.08);
+    background: linear-gradient(120deg, #eac7d6 0%, #ce93c6 100%);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(95,44,130,0.10);
     margin-bottom: 24px;
-    padding: 24px 28px;
-    transition: box-shadow 0.2s;
+    padding: 28px 32px;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 .event-card:hover {
-    box-shadow: 0 4px 24px rgba(58,80,107,0.16);
+    box-shadow: 0 8px 32px rgba(95,44,130,0.18);
+    transform: translateY(-2px) scale(1.03);
 }
 .event-title {
     color: #3a506b;
@@ -84,14 +136,15 @@
     color: #fff;
 }
 body {
-    background-color: #e9ecef;
+    background: linear-gradient(120deg, #e0eafc 0%, #bfc9d9 100%);
+    min-height: 100vh;
 }
 h1, h2 {
     color: #3a506b;
 }
 /* Home page custom styles */
 .hero-section {
-    background: linear-gradient(90deg, #bfc9d9 0%, #dee2e6 100%);
+    background: linear-gradient(90deg, #f9fafd 0%, #dee2e6 100%);
     color: #3a506b;
     padding: 60px 0;
     text-align: center;
@@ -124,16 +177,30 @@ h1, h2 {
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(58,80,107,0.08);
-    transition: background 0.2s;
+    box-shadow: 0 2px 12px rgba(95,44,130,0.10);
+    transition: background 0.2s, transform 0.2s;
+    background: linear-gradient(90deg, #8ec5fc 0%, #e0c3fc 100%);
+    color: #5f2c82;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 .btn-login {
     background: #bfc9d9;
     color: #3a506b;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(95,44,130,0.18);
+    background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+    color: #fff;
 }
 .btn-register {
     background: #dee2e6;
     color: #3a506b;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(95,44,130,0.18);
+    background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%);
+    color: #fff;
 }
 .why-join {
     margin-top: 48px;
@@ -224,8 +291,14 @@ h1, h2 {
     margin-bottom: 18px;
 }
 .btn-signup {
-    background: #7b9acc;
-    color: #fff;
+    background: linear-gradient(90deg, #bfc9d9 0%, #7b9acc 100%);
+    color: #3a506b;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 2px 12px rgba(95,44,130,0.10);
+    transition: background 0.2s, transform 0.2s;
 }
 .signup-links {
     margin-top: 10px;
@@ -242,11 +315,13 @@ h1, h2 {
 .student-home-card {
     max-width: 500px;
     margin: 60px auto 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(58,80,107,0.10);
-    padding: 36px 32px 28px 32px;
+    background: linear-gradient(120deg, #e0c3fc 0%, #bfc9d9 100%);
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(95,44,130,0.10);
+    padding: 40px 36px 32px 36px;
     text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.8s;
 }
 .student-home-card h2 {
     margin-bottom: 24px;
@@ -283,11 +358,13 @@ h1, h2 {
 .admin-home-card {
     max-width: 500px;
     margin: 60px auto 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(58,80,107,0.10);
-    padding: 36px 32px 28px 32px;
+    background: linear-gradient(120deg, #e0c3fc 0%, #bfc9d9 100%);
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(95,44,130,0.10);
+    padding: 40px 36px 32px 36px;
     text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.8s;
 }
 .admin-home-card h2 {
     margin-bottom: 24px;
@@ -324,11 +401,13 @@ h1, h2 {
 .alumni-home-card {
     max-width: 500px;
     margin: 60px auto 0 auto;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(58,80,107,0.10);
-    padding: 36px 32px 28px 32px;
+    background: linear-gradient(120deg, #e0c3fc 0%, #bfc9d9 100%);
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(95,44,130,0.10);
+    padding: 40px 36px 32px 36px;
     text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    animation: fadeInUp 0.8s;
 }
 .alumni-home-card h2 {
     margin-bottom: 24px;

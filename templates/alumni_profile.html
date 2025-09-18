@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alumni-profile-card">
+    <h2>Alumni Profile</h2>
+    {% if profile %}
+    <div class="profile-details text-start">
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Graduation Year:</strong> {{ profile.graduation_year }}</p>
+        <p><strong>Batch:</strong> {{ profile.batch }}</p>
+        <p><strong>Degree:</strong> {{ profile.degree }}</p>
+        <p><strong>Department:</strong> {{ profile.department }}</p>
+        <p><strong>Phone:</strong> {{ profile.phone }}</p>
+        <p><strong>LinkedIn:</strong> <a href="{{ profile.linkedin }}" target="_blank">{{ profile.linkedin }}</a></p>
+        <p><strong>Company:</strong> {{ profile.company }}</p>
+        <p><strong>Occupation:</strong> {{ profile.occupation }}</p>
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+        <p><strong>Skills:</strong> {{ profile.skills }}</p>
+        <p><strong>Bio:</strong> {{ profile.bio }}</p>   
+    </div>
+    {% else %}
+    <div class="text-muted">No profile information found.</div>
+    {% endif %}
+    <div class="mt-4">
+        <a href="{{ url_for('alumni.alumni_home') }}" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}

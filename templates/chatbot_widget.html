@@ -1,0 +1,31 @@
+<div id="chatbot-container" style="position:fixed;bottom:32px;right:32px;z-index:9999;">
+  <div id="chatbot-window" style="width:340px;background:#f8f9fa;border-radius:16px;box-shadow:0 4px 24px rgba(58,80,107,0.18);padding:0;overflow:hidden;">
+    <div style="background:#7b9acc;color:#fff;padding:16px 20px;font-weight:600;border-top-left-radius:16px;border-top-right-radius:16px;">Alumni Chatbot</div>
+    <div id="chatbot-messages" style="height:220px;overflow-y:auto;padding:16px 12px;font-size:1.05rem;background:#fff;"></div>
+    <form id="chatbot-form" style="display:flex;border-top:1px solid #e0eafc;">
+      <input type="text" id="chatbot-input" placeholder="Type your message..." style="flex:1;padding:10px 12px;border:none;border-bottom-left-radius:16px;font-size:1rem;outline:none;">
+      <button type="submit" style="background:#7b9acc;color:#fff;border:none;padding:0 18px;font-weight:600;border-bottom-right-radius:16px;">Send</button>
+    </form>
+  </div>
+</div>
+<script>
+const form = document.getElementById('chatbot-form');
+const input = document.getElementById('chatbot-input');
+const messages = document.getElementById('chatbot-messages');
+form.onsubmit = async (e) => {
+  e.preventDefault();
+  const msg = input.value.trim();
+  if (!msg) return;
+  messages.innerHTML += `<div style='margin-bottom:8px;'><b>You:</b> ${msg}</div>`;
+  input.value = '';
+  // Send to backend (replace with actual endpoint)
+  const res = await fetch('/chatbot', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({message: msg})
+  });
+  const data = await res.json();
+  messages.innerHTML += `<div style='margin-bottom:8px;'><b>Bot:</b> ${data.response}</div>`;
+  messages.scrollTop = messages.scrollHeight;
+};
+</script>

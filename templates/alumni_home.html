@@ -1,17 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="alumni-home-card">
-    <h2>Welcome, Alumni!</h2>
-    <div class="alumni-links">
-        <a href="/alumni/profile" class="btn btn-alumni">My Profile</a>
-        <a href="/alumni/events" class="btn btn-alumni">Events</a>
-        <a href="/alumni/connections" class="btn btn-alumni">Connections</a>
+<div class="container" style="max-width:900px;">
+    <h2 class="mb-4" style="text-align:center;font-weight:700;color:#3a506b;">Alumni Dashboard</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#7b9acc;"><i class="bi bi-person"></i></div>
+                    <h5 class="card-title mt-2">My Profile</h5>
+                    <a href="/alumni/profile" class="btn btn-alumni w-100">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#7b9acc;"><i class="bi bi-calendar-event"></i></div>
+                    <h5 class="card-title mt-2">Events</h5>
+                    <a href="/alumni/events" class="btn btn-alumni w-100">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#7b9acc;"><i class="bi bi-megaphone"></i></div>
+                    <h5 class="card-title mt-2">Jobs</h5>
+                    <a href="/alumni/jobs" class="btn btn-alumni w-100">Go</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="alumni-info">
+    <div class="alumni-info mt-4 text-center">
         <p>Stay connected with your peers, discover upcoming events, and manage your profile all in one place.</p>
     </div>
-
-    <div class="notice-section mt-4">
+    <div id="notices" class="notice-section mt-4">
         <h4 class="mb-3">Notices</h4>
         {% if notices and notices|length > 0 %}
             <ul class="list-group">
@@ -27,5 +50,49 @@
             <div class="text-muted">No notices at this time.</div>
         {% endif %}
     </div>
+    <div id="search-events" class="mt-5">
+        <h4 class="mb-3">Search Events</h4>
+        <form method="GET" action="/alumni/search/events" class="d-flex mb-3" style="max-width:400px;margin:auto;">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search by event title or date..." required>
+            <button type="submit" class="btn btn-alumni">Search</button>
+        </form>
+        {% if events is defined %}
+            {% if events and events|length > 0 %}
+                <ul class="list-group">
+                {% for event in events %}
+                    <li class="list-group-item">
+                        <strong>{{ event.title }}</strong><br>
+                        <span class="text-muted" style="font-size:0.95em;">{{ event.date }}</span>
+                        <div>{{ event.description }}</div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div class="text-muted">No events found.</div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div id="job-openings" class="mt-5">
+        <h4 class="mb-3">Job Openings</h4>
+        <a href="/alumni/post_job" class="btn btn-alumni mb-3">Post a Job Opening</a>
+        {% if job_openings is defined %}
+            {% if job_openings and job_openings|length > 0 %}
+                <ul class="list-group">
+                {% for job in job_openings %}
+                    <li class="list-group-item">
+                        <strong>{{ job.title }}</strong> at <span class="text-primary">{{ job.company }}</span><br>
+                        <span class="text-muted" style="font-size:0.95em;">{{ job.location }}</span><br>
+                        <span class="text-muted" style="font-size:0.9em;">Posted: {{ job.posted_at.strftime('%Y-%m-%d') }}</span>
+                        <div>{{ job.description }}</div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div class="text-muted">No job openings posted yet.</div>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 {% endblock %}

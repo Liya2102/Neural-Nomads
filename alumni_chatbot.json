@@ -1,0 +1,122 @@
+{
+    "intents": [
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi",
+                "Hello",
+                "Hey",
+                "Good morning",
+                "Good evening"
+            ],
+            "responses": [
+                "Hello! Welcome to Alumni Connect. How can I help you today?"
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "Goodbye",
+                "See you later",
+                "Quit"
+            ],
+            "responses": [
+                "Goodbye! Have a great day.",
+                "See you soon!"
+            ]
+        },
+        {
+            "tag": "signup",
+            "patterns": [
+                "I want to sign up",
+                "How do I create an account?",
+                "Register me as an alumni",
+                "Sign up as student"
+            ],
+            "responses": [
+                "Sure! You can sign up by clicking the *Sign Up* button on the home page and choosing your role (Alumni, Student, or Admin)."
+            ]
+        },
+        {
+            "tag": "login",
+            "patterns": [
+                "I can't log in",
+                "Login page",
+                "How do I login?",
+                "Sign in"
+            ],
+            "responses": [
+                "You can login from the *Login* page. Make sure you are using your registered email and password."
+            ]
+        },
+        {
+            "tag": "alumni_profile",
+            "patterns": [
+                "Show me my profile",
+                "View alumni profile",
+                "Where can I update my profile?",
+                "Profile page"
+            ],
+            "responses": [
+                "Alumni can view and edit their profile by logging in and clicking on *Profile* in the menu."
+            ]
+        },
+        {
+            "tag": "events",
+            "patterns": [
+                "What events are coming up?",
+                "Show alumni events",
+                "Are there any reunions?",
+                "Upcoming student events"
+            ],
+            "responses": [
+                "You can see all upcoming alumni and student events on the *Events* page."
+            ]
+        },
+        {
+            "tag": "donations",
+            "patterns": [
+                "How can I donate?",
+                "I want to contribute funds",
+                "Support students",
+                "Make a donation"
+            ],
+            "responses": [
+                "Thank you for supporting! You can donate by going to the *Donate* page after logging in as an alumni."
+            ]
+        },
+        {
+            "tag": "search_alumni",
+            "patterns": [
+                "I want to search alumni",
+                "Find alumni in Data Science",
+                "Search alumni profiles",
+                "Can I look for graduates from 2020?"
+            ],
+            "responses": [
+                "Students can search alumni profiles from the *Search* page by name, batch, or career field."
+            ]
+        },
+        {
+            "tag": "admin",
+            "patterns": [
+                "What can admin do?",
+                "Admin login",
+                "Admin features",
+                "Admin dashboard"
+            ],
+            "responses": [
+                "Admins can manage events, verify users, and oversee donations. Admins log in through the *Admin Login* page."
+            ]
+        },
+        {
+            "tag": "fallback",
+            "patterns": [],
+            "responses": [
+                "I'm not sure I understand that. Can you rephrase?",
+                "Sorry, I didn't get that. Try asking about signup, login, profile, or events."
+            ]
+        }
+    ]
+}

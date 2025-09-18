@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" style="max-width:900px;">
+    <h2 class="mb-4" style="text-align:center;font-weight:700;color:#3a506b;">Job Openings</h2>
+    <form method="GET" action="/jobs" class="d-flex mb-4" style="max-width:400px;margin:auto;">
+        <input type="text" name="q" class="form-control me-2" placeholder="Search by job title, company, or location...">
+        <button type="submit" class="btn btn-alumni">Search</button>
+    </form>
+    {% if jobs and jobs|length > 0 %}
+        <ul class="list-group">
+        {% for job in jobs %}
+            <li class="list-group-item mb-3">
+                <strong>{{ job.title }}</strong> at <span class="text-primary">{{ job.company }}</span><br>
+                <span class="text-muted" style="font-size:0.95em;">{{ job.location }}</span><br>
+                <span class="text-muted" style="font-size:0.9em;">Posted: {{ job.posted_at.strftime('%Y-%m-%d') }}</span>
+                <div>{{ job.description }}</div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <div class="text-muted">No job openings found.</div>
+    {% endif %}
+</div>
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+{% endblock %}

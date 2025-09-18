@@ -30,9 +30,21 @@ app.register_blueprint(alumni_bp, url_prefix="/alumni")
 app.register_blueprint(students_bp, url_prefix="/students")
 app.register_blueprint(admin_bp, url_prefix="/admin")
 
+from flask import request, jsonify
+import json
+from chatbot import get_response, model, words, classes, intents
+
 @app.route("/")
 def home():
     return render_template("home.html")
+
+# Chatbot backend route
+@app.route('/chatbot', methods=['POST'])
+def chatbot_api():
+    data = request.get_json()
+    message = data.get('message', '')
+    response = get_response(message, model, words, classes, intents)
+    return jsonify({'response': response})
 
 if __name__ == "__main__":
     with app.app_context():

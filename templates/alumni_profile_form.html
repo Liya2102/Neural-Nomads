@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alumni-profile-card">
+    <h2>Complete Your Alumni Profile</h2>
+    <form method="POST" class="profile-form">
+        <div class="mb-3">
+            <input type="number" name="graduation_year" class="form-control" placeholder="Graduation Year" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" name="batch" class="form-control" placeholder="Batch (e.g. 2020)" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" name="degree" class="form-control" placeholder="Degree" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" name="department" class="form-control" placeholder="Department" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+        </div>
+        <div class="mb-3">
+            <input type="url" name="linkedin" class="form-control" placeholder="LinkedIn URL">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="company" class="form-control" placeholder="Company">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="occupation" class="form-control" placeholder="Occupation">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="location" class="form-control" placeholder="Location">
+        </div>
+        <div class="mb-3">
+            <input type="text" name="skills" class="form-control" placeholder="Skills (comma separated)">
+        </div>
+        <div class="mb-3">
+            <textarea name="bio" class="form-control" placeholder="Short Bio" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-alumni">Save Profile</button>
+    </form>
+</div>
+{% endblock %}

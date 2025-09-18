@@ -9,6 +9,13 @@ admin_bp = Blueprint("admin", __name__)
 def admin_home():
     return render_template("admin_home.html")
 
+@admin_bp.route("/profile")
+@login_required
+def admin_profile():
+    if current_user.role != "admin":
+        return "Unauthorized", 403
+    return render_template("admin_profile.html", user=current_user)
+
 
 @admin_bp.route("/add-event", methods=["GET", "POST"])
 @login_required
@@ -34,4 +41,4 @@ def add_event():
 def dashboard():
     if current_user.role != "admin":
         return "Unauthorized", 403
-    return render_template("base.html", message="Admin Dashboard")
+    return render_template("admin_dashboard.html", user=current_user)

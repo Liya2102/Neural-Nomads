@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="student-profile-card">
+    <h2>Student Profile</h2>
+    {% if profile %}
+    <div class="profile-details text-start">
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Enrollment Year:</strong> {{ profile.enrollment_year }}</p>
+        <p><strong>Major:</strong> {{ profile.major }}</p>
+        <p><strong>Interests:</strong> {{ profile.interests }}</p>
+    </div>
+    {% else %}
+    <div class="text-muted">No profile information found.</div>
+    {% endif %}
+    <div class="mt-4">
+        <a href="{{ url_for('students.student_home') }}" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}

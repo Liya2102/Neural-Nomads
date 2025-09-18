@@ -1,17 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="student-home-card">
-    <h2>Welcome, Student!</h2>
-    <div class="student-links">
-        <a href="/students/profile" class="btn btn-student">My Profile</a>
-        <a href="/students/events" class="btn btn-student">Events</a>
-        <a href="/students/connections" class="btn btn-student">Connections</a>
+<div class="container" style="max-width:900px;">
+    <h2 class="mb-4" style="text-align:center;font-weight:700;color:#3a506b;">Student Dashboard</h2>
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#5fa8d3;"><i class="bi bi-person"></i></div>
+                    <h5 class="card-title mt-2">My Profile</h5>
+                    <a href="/students/profile" class="btn btn-student w-100">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#5fa8d3;"><i class="bi bi-calendar-event"></i></div>
+                    <h5 class="card-title mt-2">Events</h5>
+                    <a href="/students/events" class="btn btn-student w-100">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#5fa8d3;"><i class="bi bi-people"></i></div>
+                    <h5 class="card-title mt-2">Mentor Matching</h5>
+                    <a href="/students/mentor-matching" class="btn btn-student w-100">Go</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow-sm" style="border-radius:16px;">
+                <div class="card-body text-center">
+                    <div style="font-size:2.5rem;color:#5fa8d3;"><i class="bi bi-megaphone"></i></div>
+                    <h5 class="card-title mt-2">Notices</h5>
+                    <a href="#notices" class="btn btn-student w-100">Go</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="student-info">
-        <p>Connect with alumni, discover events, and manage your student profile.</p>
+    <div class="student-info mt-4 text-center">
+        <p>Connect with alumni, discover events, manage your student profile, and find a mentor who matches your interests and career goals.</p>
     </div>
-
-    <div class="notice-section mt-4">
+    <div id="notices" class="notice-section mt-4">
         <h4 class="mb-3">Notices</h4>
         {% if notices and notices|length > 0 %}
             <ul class="list-group">
@@ -27,5 +59,53 @@
             <div class="text-muted">No notices at this time.</div>
         {% endif %}
     </div>
+    <div id="search-alumni" class="mt-5">
+        <h4 class="mb-3">Search Alumni</h4>
+        <form method="GET" action="/students/search/alumni" class="d-flex mb-3" style="max-width:400px;margin:auto;">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search by name, company, or skill..." required>
+            <button type="submit" class="btn btn-student">Search</button>
+        </form>
+        {% if alumni_results is defined %}
+            {% if alumni_results and alumni_results|length > 0 %}
+                <ul class="list-group">
+                {% for alumni in alumni_results %}
+                    <li class="list-group-item">
+                        <strong>{{ alumni.name }}</strong> <span class="text-primary">{{ alumni.company }}</span><br>
+                        <span class="text-muted" style="font-size:0.95em;">{{ alumni.location }}</span><br>
+                        <span class="text-muted" style="font-size:0.9em;">Skills: {{ alumni.skills }}</span>
+                        <div>{{ alumni.bio }}</div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div class="text-muted">No alumni found.</div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div id="search-jobs" class="mt-5">
+        <h4 class="mb-3">Search Job Openings</h4>
+        <form method="GET" action="/students/search/jobs" class="d-flex mb-3" style="max-width:400px;margin:auto;">
+            <input type="text" name="q" class="form-control me-2" placeholder="Search by job title, company, or location..." required>
+            <button type="submit" class="btn btn-student">Search</button>
+        </form>
+        {% if job_results is defined %}
+            {% if job_results and job_results|length > 0 %}
+                <ul class="list-group">
+                {% for job in job_results %}
+                    <li class="list-group-item">
+                        <strong>{{ job.title }}</strong> at <span class="text-primary">{{ job.company }}</span><br>
+                        <span class="text-muted" style="font-size:0.95em;">{{ job.location }}</span><br>
+                        <span class="text-muted" style="font-size:0.9em;">Posted: {{ job.posted_at.strftime('%Y-%m-%d') }}</span>
+                        <div>{{ job.description }}</div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <div class="text-muted">No job openings found.</div>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 {% endblock %}
