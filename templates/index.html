@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<div class="text-center py-5 rounded shadow-sm" 
+     style="background: linear-gradient(135deg, #001f4d, #004080); color: #290c0c;">
+  <h1 class="display-5 fw-bold" style="color:#ffdd00;text-shadow: 2px 2px 8px #222;"">
+    ✨ Welcome to the VIT Chennai Alumni Network
+  </h1>
+  <p class="lead" style="color:#00ffd0; font-weight:600; text-shadow: 1px 1px 6px #222;">
+    Connecting past, present, and future VITians
+  </p>
+  {% if not session.get('role') %}
+    <div class="mt-4">
+      <a href="/login" class="btn btn-light btn-lg me-2">Login</a>
+      <a href="/register" class="btn btn-warning btn-lg">Register</a>
+    </div>
+  {% endif %}
+</div>
+
+<!-- Info Cards -->
+<div class="row mt-5 text-center">
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title text-primary">📚 Students</h5>
+        <p class="card-text">Explore alumni network, career opportunities, and connect with mentors.</p>
+        <a href="/student_dashboard" class="btn btn-outline-primary btn-sm">Explore</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title text-success">🎓 Alumni</h5>
+        <p class="card-text">Stay connected, post job openings, and guide the next generation of VITians.</p>
+        <a href="/alumni_dashboard" class="btn btn-outline-success btn-sm">Go to Dashboard</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <h5 class="card-title text-danger">🛠️ Admin</h5>
+        <p class="card-text">Manage students, alumni, notices, and events to keep the community alive.</p>
+        <a href="/admin_dashboard" class="btn btn-outline-danger btn-sm">Manage</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

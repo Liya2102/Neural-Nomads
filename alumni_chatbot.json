@@ -1,0 +1,107 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening"],
+      "responses": ["Hello! 👋 Welcome to VIT Chennai Alumni Network.", "Hi there! How can I assist you today?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you", "Goodbye", "Take care"],
+      "responses": ["Goodbye! 👋 Stay connected with VIT Alumni.", "See you soon! ✨"]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "Thx", "Thanks a lot"],
+      "responses": ["You're welcome! 😊", "Glad I could help 🙌"]
+    },
+    {
+      "tag": "registration",
+      "patterns": ["How to register", "Register as alumni", "Sign up", "Create account"],
+      "responses": [
+        "To register as an alumni, click on **Register** in the top menu and fill your details.",
+        "Go to the Register page and choose whether you are an Alumni or Student."
+      ]
+    },
+    {
+      "tag": "login",
+      "patterns": ["Login issue", "Can't login", "How to login", "Sign in"],
+      "responses": [
+        "You can login by clicking the **Login** button on the top right corner.",
+        "Make sure you select the correct role: Student / Alumni / Admin."
+      ]
+    },
+    {
+      "tag": "notices",
+      "patterns": ["Where are the notices", "Latest news", "Show me events", "Announcements"],
+      "responses": [
+        "You can find all **Latest Notices** on the right sidebar of the website.",
+        "Check the Notices section → Click on any notice to view or download the PDF."
+      ]
+    },
+    {
+      "tag": "jobs",
+      "patterns": ["Job openings", "Internships", "Career opportunities", "Any jobs?"],
+      "responses": [
+        "Alumni regularly post **job openings** in the Career Hub. Students can view them on the dashboard.",
+        "Check the **Latest Job Openings** section in your dashboard."
+      ]
+    },
+    {
+      "tag": "contact_admin",
+      "patterns": ["How to contact admin", "Admin email", "Help from admin"],
+      "responses": [
+        "Admins can be contacted via their registered email addresses. Visit the **Admin Dashboard / Contacts** page.",
+        "You can reach the admin by checking the Admin details in the system."
+      ]
+    },
+    {
+      "tag": "alumni_google",
+      "patterns": ["Alumni in Google", "Who works at Google", "Google alumni"],
+      "responses": [
+        "Yes! 🎉 Several VIT Chennai alumni are working at Google as Software Engineers and Data Scientists.",
+        "Our alumni are placed in Google Bangalore, Hyderabad, and even Mountain View, USA."
+      ]
+    },
+    {
+      "tag": "alumni_microsoft",
+      "patterns": ["Alumni in Microsoft", "Who works at Microsoft", "Microsoft alumni"],
+      "responses": [
+        "Yes! Many alumni are working in Microsoft as SDEs, Program Managers, and Cloud Engineers.",
+        "Microsoft has hired multiple VIT Chennai graduates over the years."
+      ]
+    },
+    {
+      "tag": "location",
+      "patterns": ["Where is VIT Chennai", "Campus location", "VIT address"],
+      "responses": [
+        "VIT Chennai Campus is located at Vandalur–Kelambakkam Road, Chennai, Tamil Nadu, India.",
+        "📍 Address: VIT Chennai, Vandalur–Kelambakkam Road, Chennai - 600127."
+      ]
+    },
+    {
+      "tag": "mentor_mentee",
+      "patterns": ["Find mentor", "Mentee program", "Mentorship", "Guide students"],
+      "responses": [
+        "We are building a Mentor-Mentee Matching system 🔗 where alumni can mentor students based on interests, location, and industry.",
+        "Students can request mentorship via the platform, and alumni can accept to guide them."
+      ]
+    },
+    {
+      "tag": "donations",
+      "patterns": ["Donate", "How to donate", "Contribution", "Alumni fund"],
+      "responses": [
+        "Alumni can donate through the **Donations** page. Contributions go to scholarships, events, and student support.",
+        "Visit the Donations section for secure payment and support options."
+      ]
+    },
+    {
+      "tag": "events",
+      "patterns": ["Upcoming events", "Alumni meet", "Next reunion", "Seminars"],
+      "responses": [
+        "The **Alumni Meet 2025** is scheduled for Jan 15th 🎉. Check the Notices section for the invitation PDF.",
+        "We organize alumni meets, webinars, and reunions regularly. Stay tuned to the Events page."
+      ]
+    }
+  ]
+}

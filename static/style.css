@@ -1,0 +1,99 @@
+/* Global styles */
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f8f9;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background: linear-gradient(90deg, #003366, #0055a5);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.navbar-brand {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Container & Layout */
+.container-fluid {
+  min-height: 80vh;
+}
+
+/* Notices Panel */
+aside, .notices-panel {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+/* Footer */
+footer {
+  background: #003366;
+  color: #fff;
+  padding: 12px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* Forms */
+form input, form select, form button {
+  margin: 6px 0;
+  padding: 10px;
+  border-radius: 6px;
+}
+form button {
+  background: #0055a5;
+  color: white;
+  border: none;
+}
+form button:hover {
+  background: #003366;
+}
+
+/* Chatbot */
+#chatbot {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 999;
+}
+#chatbox {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  padding: 12px;
+  max-width: 250px;
+}
+
+.display-5 {
+  font-family: 'Merriweather', serif;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+/* Hero Section */
+.display-5 {
+  font-family: 'Merriweather', serif;
+  color: #ffdd00; /* Golden yellow for highlight */
+}
+.lead {
+  font-size: 1.2rem;
+  font-weight: 400;
+}

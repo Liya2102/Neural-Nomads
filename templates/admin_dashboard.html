@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+  <h2 class="mb-4">⚙️ Admin Dashboard</h2>
+
+  <!-- Summary Panel -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Total Alumni</h6>
+          <h4>{{total_alumni}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Active Alumni</h6>
+          <h4>{{active_alumni}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Total Students</h6>
+          <h4>{{total_students}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h6>Active Students</h6>
+          <h4>{{active_students}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Engagement Insights -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="alert alert-info">
+        📊 Most Active Batch: <b>{{top_batch_info}}</b>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="alert alert-success">
+        🏆 Most Active Course: <b>{{top_course_info}}</b>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alumni Management -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <span>🎓 Registered Alumni</span>
+        <button class="btn btn-sm btn-light" data-bs-toggle="collapse" data-bs-target="#alumniSearch">Search</button>
+      </div>
+    </div>
+    <div class="collapse" id="alumniSearch">
+      <div class="card-body bg-light">
+        <form method="get" class="row g-2">
+          <div class="col-md-3"><input type="text" name="alumni_name" class="form-control" placeholder="Name"></div>
+          <div class="col-md-3"><input type="text" name="alumni_email" class="form-control" placeholder="Email"></div>
+          <div class="col-md-2"><input type="text" name="alumni_batch" class="form-control" placeholder="Batch"></div>
+          <div class="col-md-3"><input type="text" name="alumni_dept" class="form-control" placeholder="Department"></div>
+          <div class="col-md-1"><button type="submit" class="btn btn-success w-100">Go</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="card-body">
+      {% if alumni %}
+      <table class="table table-striped table-hover">
+        <tr><th>Name</th><th>Email</th><th>Batch</th><th>Department</th><th>Action</th></tr>
+        {% for a in alumni %}
+        <tr>
+          <td>{{a.Name}}</td>
+          <td>{{a.Email}}</td>
+          <td>{{a.Batch}}</td>
+          <td>{{a.Department}}</td>
+          <td><a href="/delete_user/alumni/{{a.Email}}" class="btn btn-sm btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% elif request.args %}
+        <p class="text-muted">No alumni found for your search.</p>
+      {% else %}
+        <p class="text-muted">Search to view alumni.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Student Management -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <span>🎓 Students</span>
+        <button class="btn btn-sm btn-light" data-bs-toggle="collapse" data-bs-target="#studentSearch">Search</button>
+      </div>
+    </div>
+    <div class="collapse" id="studentSearch">
+      <div class="card-body bg-light">
+        <form method="get" class="row g-2">
+          <div class="col-md-3"><input type="text" name="student_name" class="form-control" placeholder="Name"></div>
+          <div class="col-md-3"><input type="text" name="student_email" class="form-control" placeholder="Email"></div>
+          <div class="col-md-2"><input type="text" name="student_batch" class="form-control" placeholder="Batch"></div>
+          <div class="col-md-3"><input type="text" name="student_dept" class="form-control" placeholder="Department"></div>
+          <div class="col-md-1"><button type="submit" class="btn btn-light w-100">Go</button></div>
+        </form>
+      </div>
+    </div>
+    <div class="card-body">
+      {% if students %}
+      <table class="table table-striped table-hover">
+        <tr><th>Name</th><th>Email</th><th>Batch</th><th>Department</th><th>Action</th></tr>
+        {% for s in students %}
+        <tr>
+          <td>{{s.Name}}</td>
+          <td>{{s.Email}}</td>
+          <td>{{s.Batch}}</td>
+          <td>{{s.Department}}</td>
+          <td><a href="/delete_user/student/{{s.Email}}" class="btn btn-sm btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% elif request.args %}
+        <p class="text-muted">No students found for your search.</p>
+      {% else %}
+        <p class="text-muted">Search to view students.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Job Openings -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-info text-white">💼 Job Openings</div>
+    <div class="card-body">
+      {% if jobs %}
+        <ul class="list-group">
+          {% for job in jobs %}
+          <li class="list-group-item">
+            <b>{{job.title}}</b> at {{job.company}} - {{job.role}} ({{job.location}})
+            <p>{{job.description}}</p>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No job openings posted.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Notices -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-warning">📢 Notices</div>
+    <div class="card-body">
+      {% if notices %}
+        <ul class="list-group">
+          {% for n in notices %}
+            <li class="list-group-item">
+              <a href="{{ url_for('static', filename='notices/' + n.file) }}" target="_blank" class="text-decoration-none">
+                {{n.title}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No notices available.</p>
+      {% endif %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

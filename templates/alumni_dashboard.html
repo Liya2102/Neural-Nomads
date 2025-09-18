@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+  <!-- Profile Info -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">Alumni Profile</div>
+    <div class="card-body">
+      <p><b>Name:</b> {{ alum.Name }}</p>
+      <p><b>Email:</b> {{ alum.Email }}</p>
+      <p><b>Batch:</b> {{ alum.Batch }}</p>
+      <p><b>Department:</b> {{ alum.Department }}</p>
+    </div>
+  </div>
+
+  <!-- Post Job -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-success text-white">Post Job / Internship</div>
+    <div class="card-body">
+      <form method="post" class="row g-3">
+        <input type="text" name="title" class="form-control" placeholder="Job Title" required>
+        <input type="text" name="company" class="form-control" placeholder="Company" required>
+        <input type="text" name="role" class="form-control" placeholder="Role" required>
+        <input type="text" name="location" class="form-control" placeholder="Location" required>
+        <textarea name="description" class="form-control" placeholder="Job Description" required></textarea>
+        <button class="btn btn-primary">Post Job</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Job Openings -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-dark text-white">Your Job Openings</div>
+    <div class="card-body">
+      {% if jobs %}
+      <ul class="list-group">
+        {% for job in jobs %}
+          <li class="list-group-item">
+            <b>{{job.title}}</b> at {{job.company}} - {{job.role}} ({{job.location}})
+            <p>{{job.description}}</p>
+          </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        <p>No job openings posted yet.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Notices -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-warning">Latest Notices</div>
+    <div class="card-body">
+      <ul>
+        {% for n in notices %}
+          <li><a href="{{ url_for('static', filename='notices/' + n.file) }}" target="_blank">{{n.title}}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

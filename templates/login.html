@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>🔑 Login</h2>
+<form method="post" class="form">
+  <div class="mb-2">
+    <label>Role</label>
+    <select name="role" class="form-control">
+      <option value="admin">Admin</option>
+      <option value="alumni">Alumni</option>
+      <option value="student">Student</option>
+    </select>
+  </div>
+  <input type="email" name="email" placeholder="Email" class="form-control mb-2" required>
+  <input type="password" name="password" placeholder="Password" class="form-control mb-2" required>
+  <button type="submit" class="btn btn-success">Login</button>
+</form>
+{% endblock %}

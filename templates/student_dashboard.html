@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+
+  <!-- Student Info -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">Welcome, {{ session.get('user') }}</div>
+    <div class="card-body">
+      <p><b>Name:</b> {{ student.Name }}</p>
+      <p><b>Batch:</b> {{ student.Batch }}</p>
+      <p><b>Department:</b> {{ student.Department }}</p>
+      <p><b>Email:</b> {{ student.Email }}</p>
+    </div>
+  </div>
+
+  <!-- Alumni Search -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-secondary text-white">🔎 Search Alumni</div>
+    <div class="card-body">
+      <form method="get" class="row g-3">
+        <div class="col-md-4">
+          <input type="text" name="batch" class="form-control border" placeholder="Batch Year" value="{{ request.args.get('batch','') }}">
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="company" class="form-control border" placeholder="Company" value="{{ request.args.get('company','') }}">
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="department" class="form-control border" placeholder="Department" value="{{ request.args.get('department','') }}">
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Search</button>
+          <a href="/student_dashboard" class="btn btn-outline-danger">Reset</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Alumni Results -->
+  {% if request.args.get('batch') or request.args.get('company') or request.args.get('department') %}
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-dark text-white">🎓 Alumni Results</div>
+    <div class="card-body">
+      {% if results %}
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Batch</th>
+              <th>Department</th>
+              <th>Company</th>
+              <th>Role</th>
+              <th>Location</th>
+              <th>Contact</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a in results %}
+              <tr>
+                <td>{{ a.Name }}</td>
+                <td>{{ a.Batch }}</td>
+                <td>{{ a.Department }}</td>
+                <td>{{ a.Company }}</td>
+                <td>{{ a.Role }}</td>
+                <td>{{ a.Location }}</td>
+                <td><a href="mailto:{{ a.Email }}" class="btn btn-sm btn-outline-primary">Email</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="text-muted">No alumni found. Try different filters.</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+  <!-- Notices -->
+  <div class="notices-panel p-3 bg-white shadow-sm rounded mb-3">
+    <h5 class="mb-3 text-primary">📢 Latest Notices</h5>
+    <ul class="list-group list-group-flush">
+      {% for n in notices %}
+        <li class="list-group-item">
+          <a href="{{ url_for('static', filename='notices/' + n.file) }}" target="_blank" class="text-decoration-none">
+            {{n.title}}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Job Openings -->
+  <div class="jobs-panel p-3 bg-white shadow-sm rounded">
+    <h5 class="mb-3 text-success">💼 Latest Job Openings</h5>
+    {% if jobs %}
+      <ul class="list-group">
+        {% for job in jobs %}
+          <li class="list-group-item">
+            <b>{{job.title}}</b> at {{job.company}} - {{job.role}} ({{job.location}})
+            <p class="small">{{job.description}}</p>
+            <p><a href="mailto:{{job.alumni_email}}" class="btn btn-sm btn-outline-primary">Email Alumni</a></p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No job openings yet.</p>
+    {% endif %}
+  </div>
+{% endblock %}
